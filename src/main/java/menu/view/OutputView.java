@@ -53,7 +53,7 @@ public class OutputView {
         for (Entry<String, List<String>> coach : lunch.entrySet()) {
             formattedString.append(coach.getKey());
             List<String> value = coach.getValue();
-            formattedString.append(SPACE).append(String.join(", ", value));
+            formattedString.append(SPACE).append(String.join(SPACE, value));
             formattedString.append(CLOSE_ARRAY);
             System.out.println(formattedString);
             formattedString = new StringBuilder(OPEN_ARRAY);
