@@ -16,4 +16,8 @@ public class RestrictedFood {
     public List<String> getRestrictedFood() {
         return this.restrictedFood;
     }
+
+    public boolean contain(final String menu) {
+        return restrictedFood.contains(menu);
+    }
 }

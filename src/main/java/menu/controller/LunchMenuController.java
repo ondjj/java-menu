@@ -1,10 +1,16 @@
 package menu.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import menu.model.CategoryGenerator;
 import menu.model.Coach;
 import menu.model.CoachName;
 import menu.model.RestrictedFood;
+import menu.model.menu.Menu;
+import menu.model.menu.MenuCategory;
+import menu.model.menu.Weekday;
 import menu.util.InputNames;
 import menu.util.InputRestrictedFoods;
 import menu.view.InputView;
@@ -23,6 +29,9 @@ public class LunchMenuController {
         outputView.printStartRecommendation();
         InputNames inputNames = setCoachName();
         List<Coach> coaches = createCoaches(inputNames);
+        HashMap<String, List<String>> menu = setMenu(coaches);
+        displayCoachMenu(menu);
+        displayClose();
     }
 
     public InputNames setCoachName() {
@@ -41,5 +50,25 @@ public class LunchMenuController {
             coaches.add(coach);
         }
         return coaches;
+    }
+
+    private HashMap<String, List<String>> setMenu(List<Coach> coaches) {
+        CategoryGenerator categoryGenerator = CategoryGenerator.of();
+        Menu menu = Menu.getInstance(coaches, categoryGenerator);
+        HashMap<String, List<String>> lunch = menu.lunch();
+        outputView.printFinalMenu();
+
+        Map<Weekday, MenuCategory> weekdayCategory = categoryGenerator.getWeekdayCategory();
+        outputView.printWeekOfDay(weekdayCategory);
+        outputView.printCategory(weekdayCategory);
+        return lunch;
+    }
+
+    private void displayCoachMenu(HashMap<String, List<String>> lunch) {
+        outputView.printCoachMenu(lunch);
+    }
+
+    private void displayClose() {
+        outputView.printCompleted();
     }
 }

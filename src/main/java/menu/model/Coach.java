@@ -12,4 +12,12 @@ public class Coach {
     public static Coach valueOf(final CoachName name, final RestrictedFood restrictedFood) {
         return new Coach(name, restrictedFood);
     }
+
+    public CoachName getName() {
+        return this.name;
+    }
+
+    public RestrictedFood getRestrictedFood() {
+        return this.restrictedFood;
+    }
 }
