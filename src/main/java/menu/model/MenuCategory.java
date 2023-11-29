@@ -1,4 +1,4 @@
-package menu.util;
+package menu.model;
 
 public enum MenuCategory {
 
