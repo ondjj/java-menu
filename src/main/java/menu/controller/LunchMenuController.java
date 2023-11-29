@@ -3,8 +3,10 @@ package menu.controller;
 import java.util.ArrayList;
 import java.util.List;
 import menu.model.Coach;
-import menu.model.CoachNames;
-import menu.model.RestrictedFoods;
+import menu.model.CoachName;
+import menu.model.RestrictedFood;
+import menu.util.InputNames;
+import menu.util.InputRestrictedFoods;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -19,24 +21,23 @@ public class LunchMenuController {
 
     public void run() {
         outputView.printStartRecommendation();
-        CoachNames coachNames = setCoachName();
-        List<Coach> coaches = createCoaches(coachNames);
+        InputNames inputNames = setCoachName();
+        List<Coach> coaches = createCoaches(inputNames);
     }
 
-    public CoachNames setCoachName() {
+    public InputNames setCoachName() {
         return inputView.readCoachName();
     }
 
-    public RestrictedFoods setRestrictedFoods(String coachNames) {
+    public InputRestrictedFoods setRestrictedFoods(String coachNames) {
         return inputView.readRestrictedFoods(coachNames);
     }
 
-    private List<Coach> createCoaches(CoachNames coachNames) {
-        List<String> allCoachNames = coachNames.getAllCoachNames();
+    private List<Coach> createCoaches(InputNames inputNames) {
         List<Coach> coaches = new ArrayList<>();
-        for (String name : allCoachNames) {
-            RestrictedFoods restrictedFoods = setRestrictedFoods(name);
-            Coach coach = Coach.valueOf(coachNames, restrictedFoods);
+        for (String name : inputNames.getAllCoachNames()) {
+            InputRestrictedFoods inputRestrictedFoods = setRestrictedFoods(name);
+            Coach coach = Coach.valueOf(CoachName.of(name), RestrictedFood.of(inputRestrictedFoods.getRestrictedFood()));
             coaches.add(coach);
         }
         return coaches;

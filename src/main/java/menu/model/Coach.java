@@ -1,15 +1,15 @@
 package menu.model;
 
 public class Coach {
-    private final CoachNames coachNames;
-    private final RestrictedFoods restrictedFoods;
+    private final CoachName name;
+    private final RestrictedFood restrictedFood;
 
-    private Coach(final CoachNames coachNames, final RestrictedFoods restrictedFoods){
-        this.coachNames = coachNames;
-        this.restrictedFoods = restrictedFoods;
+    private Coach(final CoachName name, final RestrictedFood restrictedFood){
+        this.name = name;
+        this.restrictedFood = restrictedFood;
     }
 
-    public static Coach valueOf(final CoachNames coachNames, final RestrictedFoods restrictedFoods) {
-        return new Coach(coachNames, restrictedFoods);
+    public static Coach valueOf(final CoachName name, final RestrictedFood restrictedFood) {
+        return new Coach(name, restrictedFood);
     }
 }

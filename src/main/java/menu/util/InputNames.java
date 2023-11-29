@@ -1,21 +1,20 @@
-package menu.model;
+package menu.util;
 
 import static menu.util.validation.CoachNameValidation.validateCoachNames;
 
 import java.util.List;
-import menu.util.Parser;
 
-public class CoachNames {
+public class InputNames {
     private final List<String> names;
 
-    private CoachNames(List<String> names) {
+    private InputNames(List<String> names) {
         this.names = names;
     }
 
-    public static CoachNames of(String coachName) {
+    public static InputNames of(String coachName) {
         List<String> parseNames = Parser.parseString(coachName);
         validateCoachNames(parseNames);
-        return new CoachNames(parseNames);
+        return new InputNames(parseNames);
     }
 
     public List<String> getAllCoachNames() {

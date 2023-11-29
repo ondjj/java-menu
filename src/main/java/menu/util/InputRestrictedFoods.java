@@ -1,22 +1,17 @@
-package menu.model;
+package menu.util;
 
 import java.util.List;
-import menu.util.Parser;
 
-public class RestrictedFoods {
+public class InputRestrictedFoods {
     private final List<String> restrictedFood;
 
-    private RestrictedFoods(List<String> restrictedFood) {
+    private InputRestrictedFoods(List<String> restrictedFood) {
         this.restrictedFood = restrictedFood;
     }
 
-    public static RestrictedFoods of (String restrictedFood) {
+    public static InputRestrictedFoods of (String restrictedFood) {
         List<String> parseFoods = Parser.parseString(restrictedFood);
-        return new RestrictedFoods(parseFoods);
-    }
-
-    public void merge(List<String> restrictedFoods) {
-        restrictedFood.addAll(restrictedFoods);
+        return new InputRestrictedFoods(parseFoods);
     }
 
     public List<String> getRestrictedFood() {
