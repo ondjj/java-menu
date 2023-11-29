@@ -1,4 +1,4 @@
-package menu.util;
+package menu.model.menu;
 
 public enum Weekday {
 
